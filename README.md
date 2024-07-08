@@ -1,2 +1,2 @@
-# React_Projects
-Collection of some of the react projects.
+# WebD Projects
+Collection of some of the Web Development Projects.
