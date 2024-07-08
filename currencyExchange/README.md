@@ -1,6 +1,6 @@
-# React + Vite
+# Currency Exchange Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple project of currency exchange using react and vite.
 
 Currently, two official plugins are available:
 
