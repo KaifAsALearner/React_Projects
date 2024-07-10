@@ -1,6 +1,11 @@
 # Currency Exchange Project
 
-This is a simple project of currency exchange using react and vite.
+This is a simple responsive project of currency exchange using react and vite.
+
+# Functionalities
+- Exchanging between two currencies
+- Changing Currency
+- Swapping
 
 # Stuffs Used
 
