@@ -20,7 +20,7 @@ function TodoInput() {
       id='todoEntry'
     >
       <input 
-        className="flex h-12 w-11/12 border rounded-l-md rounded-r-none border-gray-400 px-3 py-1 focus:border-gray-800 focus:bg-gray-100" 
+        className="flex h-12 w-11/12 border rounded-l-md rounded-r-none border-blue-950 px-3 py-1 focus:border-gray-800 focus:bg-gray-100" 
         type='text'
         placeholder='Assign a Task...'
         value={task}

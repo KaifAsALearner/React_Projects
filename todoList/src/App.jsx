@@ -43,13 +43,13 @@ function App() {
   return (
     <TodoProvider value={{todoList,addToTheList,updateATask,deleteATask,toggleStatusOfATask}}>
       <div
-        className='flex flex-col w-full h-lvh justify-start items-center bg-violet-950'
+        className='flex flex-col w-full h-lvh justify-start items-center'
       >
         <div
-          className='sticky w-9/12 top-0 flex flex-col justify-center items-center p-4'
+          className='w-9/12 flex flex-col justify-center items-center p-4 bg-violet-950 sticky top-0'
         >
           <h1 className='text-5xl my-2 py-2 font-mono font-bold text-white'>ToDo List Manager</h1>
-          <TodoInput />
+          <TodoInput/>
         </div>
         <div className='w-9/12 justify-center items-center'>
           {todoList.map((indTask)=>(
