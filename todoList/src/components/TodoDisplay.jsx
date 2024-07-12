@@ -53,7 +53,7 @@ function TodoDisplay({task}) {
   },[task])
 
   return (
-    <div className={`w-full flex justify-evenly items-center my-3 border rounded-md p-3 ${task.completed ? "bg-green-400":"bg-red-400"}`}>
+    <div className={`w-full flex justify-evenly items-center my-3 border rounded-md p-3 ${task.completed ? "bg-green-300":"bg-red-300"}`}>
       <div
         className='w-11/12 flex flex-col justify-evenly items-center border-r-2 pr-1'
       >
@@ -66,7 +66,7 @@ function TodoDisplay({task}) {
             disabled={isTaskEditable}
           />
           <input
-            className={`flex w-10/12 rounded-md border ${isTaskEditable? "border-black/30":"border-none"} ${task.completed?"line-through":""} bg-transparent px-2 py-3 text-lg placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50`}
+            className={`flex w-10/12 rounded-md border ${isTaskEditable? "border-black/30":"border-none"} ${task.completed?"line-through":""} bg-transparent px-2 py-3 text-lg font-semibold placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50`}
             type='text'
             value={taskTask}
             readOnly={!isTaskEditable}
