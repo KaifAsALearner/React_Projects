@@ -1,43 +1,25 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { useTodo } from '../contexts'
+import { useDispatch } from 'react-redux'
+import { deleteATask, toggleStatusOfATask, updateATask } from '../features/todo/todoSlice'
+
 
 function TodoDisplay({task}) {
-  //experiment area
-  //till here
-  const [completedTime,setCompletedTime]=useState(task.completedTime)
-  const [lastUpdated,setlastUpdated]=useState(task.lastUpdated)
+
   const [taskTask,setTaskTask]=useState(task.task)
   const [isTaskEditable,setIsTaskEditable]=useState(false)
+
+  const dispatch=useDispatch()
   const taskRef=useRef()
 
-  const {updateATask,deleteATask,toggleStatusOfATask}=useTodo()
-
-  const toggleStatus=(e)=>{
-    if(!task.completed) setCompletedTime(Date.now())
-    else setCompletedTime(null)
+  const toggleStatus=()=>{
+    if(!task.completed) dispatch(toggleStatusOfATask({id:task.id,completedTime:Date.now()}))
+    else dispatch(toggleStatusOfATask({id:task.id,completedTime:null}))
   }
-
-  useEffect(()=>{
-    toggleStatusOfATask(task.id,completedTime);
-  },[completedTime])
-
-  const updateThisTask=()=>{
-    if(taskTask.length===0) deleteATask(task.id)
-    else{
-      setlastUpdated(Date.now())
-      updateATask(task.id,{...task,task:taskTask,lastUpdated:lastUpdated})
-      setIsTaskEditable(false)
-    }
-  }
-
   const handleEditBtn=()=>{
-    if(task.completed) return
-
     if(isTaskEditable){
-      updateThisTask();
-    }else{
-      setIsTaskEditable(true)
+      dispatch(updateATask({id:task.id,task:taskTask,lastUpdated:Date.now()}))
     }
+    setIsTaskEditable((prev)=>!prev)
   }
 
   const formatDate=(timeElapsed,label)=>{
@@ -103,8 +85,8 @@ function TodoDisplay({task}) {
           className='w-full flex flex-wrap justify-around py-1 px-1'
         >        
           {formatDate(task.startTime, "Created")}
-          {formatDate(lastUpdated, "Mod.")}
-          {completedTime ? formatDate(completedTime, "Done") : <div className="flex justify-evenly w-1/4 py-1">
+          {formatDate(task.lastUpdated, "Mod.")}
+          {task.completedTime ? formatDate(task.completedTime, "Done") : <div className="flex justify-evenly w-1/4 py-1">
                                                                   <h1 className="mb-[0px] text-md font-semibold">Ongoing</h1>
                                                                 </div>}
         </div>
@@ -121,7 +103,7 @@ function TodoDisplay({task}) {
         </button>
         <button
           className="rounded-full bg-black px-3 py-3 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-          onClick={()=>deleteATask(task.id)}
+          onClick={(e)=>dispatch(deleteATask(task.id))}
         >
           🗑️
         </button>

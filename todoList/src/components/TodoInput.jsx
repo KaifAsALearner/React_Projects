@@ -1,17 +1,16 @@
 import React, { useContext, useState } from 'react'
-import { useTodo } from '../contexts'
+import { useDispatch } from 'react-redux'
+import { addToTheList } from '../features/todo/todoSlice'
 
 function TodoInput() {
   const [task,setTask]=useState("")
-  const {addToTheList}=useTodo()
-  
+  const dispatch=useDispatch()
+
   const addThisTask=(e)=>{
     e.preventDefault();
     if(!task) return
-    addToTheList({
-      task:task
-    });
-    setTask("");
+    dispatch(addToTheList(task))
+    setTask('')
   }
   return (
     <form

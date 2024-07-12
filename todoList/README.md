@@ -16,20 +16,23 @@ This is a simple responsive project of to-do list using react and vite.
 - npm
 - Tailwind
 - localStorage
+- Redux-toolkit
 
 # Files/Folders Those Actually Matters
 
 ```
 public/vite.svg
 src/components
-src/contexts
+src/app
+src/features
 src/App.jsx
+src/main.jsx
 ```
 
 # Concepts Required
 - React Components
 - Tailwind CSS
-- React Contexts
+- Redux-Toolkit
 - localStorage
 - React Hooks
 
@@ -37,4 +40,3 @@ src/App.jsx
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-- using a different branch

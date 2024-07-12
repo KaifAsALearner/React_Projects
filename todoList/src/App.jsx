@@ -1,39 +1,19 @@
 import { useEffect, useState } from 'react'
-import { TodoProvider } from './contexts'
-import { TodoDisplay, TodoInput } from './components'
+import { TodoInput, TodoDisplay } from './components'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { initializeTheList } from './features/todo/todoSlice'
 
 function App() {
-  const [todoList,setTodoList]=useState([])
-
-  const addToTheList=(newTask)=>{
-
-    setTodoList((prev)=>[{
-      id: Date.now(),
-      completed: false,
-      startTime: Date.now(),
-      lastUpdated: Date.now(),
-      completedTime: null,
-      ...newTask
-    },...prev])
-  }
-
-  const updateATask=(id,task)=>{
-    setTodoList((prev)=>prev.map((indTask)=>(indTask.id === id ? task:indTask)))
-  }
-
-  const deleteATask=(id)=>{
-    setTodoList((prev)=>prev.filter((indTask)=> (indTask.id !== id)))
-  }
-
-  const toggleStatusOfATask=(id,completedTime)=>{
-    console.log(completedTime)
-    setTodoList((prev)=>prev.map((indTask)=>(indTask.id === id ? {...indTask,completed: !indTask.completed, completedTime: completedTime} : indTask)))
-  }
+  const todoList=useSelector(state=>state.todoList)
+  const dispatch=useDispatch()
 
   useEffect(()=>{
-    const todoList=JSON.parse(localStorage.getItem("todoList"))
-    if(todoList && todoList.length > 0)
-      setTodoList(todoList);
+    const localToDoList=JSON.parse(localStorage.getItem("todoList"))
+    if(localToDoList && localToDoList.length>0)
+      dispatch(initializeTheList(localToDoList))
+    else
+      dispatch(initializeTheList([]))
   },[])
 
   useEffect(()=>{
@@ -41,7 +21,7 @@ function App() {
   },[todoList])
 
   return (
-    <TodoProvider value={{todoList,addToTheList,updateATask,deleteATask,toggleStatusOfATask}}>
+    <>
       <div
         className='flex flex-col w-full h-lvh justify-start items-center'
       >
@@ -61,7 +41,7 @@ function App() {
           ))}
         </div>
       </div>
-    </TodoProvider>
+    </>
   )
 }
 
