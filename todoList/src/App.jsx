@@ -26,7 +26,6 @@ function App() {
   }
 
   const toggleStatusOfATask=(id,completedTime)=>{
-    console.log(completedTime)
     setTodoList((prev)=>prev.map((indTask)=>(indTask.id === id ? {...indTask,completed: !indTask.completed, completedTime: completedTime} : indTask)))
   }
 
@@ -45,12 +44,12 @@ function App() {
       <div
         className='flex flex-col w-full h-lvh justify-start items-center'
       >
-        <div
+        <header
           className='w-9/12 flex flex-col justify-center items-center p-4 bg-violet-950 sticky top-0'
         >
           <h1 className='text-5xl my-2 py-2 font-mono font-bold text-white'>ToDo List Manager</h1>
           <TodoInput/>
-        </div>
+        </header>
         <div className='w-9/12 justify-center items-center'>
           {todoList.map((indTask)=>(
             <div key={indTask.id}>
